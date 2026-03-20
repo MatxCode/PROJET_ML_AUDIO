@@ -11,6 +11,17 @@ LEARNING_RATE = 0.001
 BATCH_SIZE = 32
 
 def train():
+    """
+    Lance la procédure complète d'entraînement du modèle.
+    
+    Cette fonction :
+    1. Prépare les dossiers et charge les données via les DataLoaders.
+    2. Initialise le modèle InstrumentCNN, la fonction de coût (CrossEntropy) et l'optimiseur (Adam).
+    3. Exécute la boucle d'entraînement sur plusieurs époques.
+    4. Évalue la précision sur le jeu de validation après chaque époque.
+    5. Sauvegarde automatiquement l'état du modèle ayant obtenu la meilleure précision.
+    """
+    
     # si dossier models n'existe pas
     if not os.path.exists("../models"):
         os.makedirs("../models")

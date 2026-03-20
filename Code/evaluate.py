@@ -14,7 +14,12 @@ N_MELS = 128
 INV_INSTRUMENTS = {0: 'gac', 1: 'org', 2: 'pia', 3: 'voi'}
 
 def evaluate():
-    # chargement du modèle
+    """
+    Charge le meilleur modèle sauvegardé et évalue ses performances sur le dataset de test.
+    La fonction traite chaque fichier audio (.wav), génère son spectrogramme de Mel,
+    et compare la prédiction du modèle avec les instruments réels listés dans le 
+    fichier texte (.txt) correspondant. Calcule enfin le score de précision global.
+    """
     model = InstrumentCNN(num_classes=4).to(DEVICE)
     model.load_state_dict(torch.load(MODEL_PATH, map_location=DEVICE))
     model.eval()
@@ -64,8 +69,14 @@ def evaluate():
             correct_detections += 1
 
     final_score = (correct_detections / total_instances) * 100
+    print("-" * 30)
     print(f"Nombre de morceaux testés : {total_instances}")
-    print(f"Score final : {final_score:.2f}%")
+    print(f"Score final (Métrique Projet) : {final_score:.2f}%")
+    
+    if final_score >= 70:
+        print("Félicitations ! Objectif de 70% atteint.")
+    else:
+        print("Objectif non atteint, vérifiez l'équilibrage des données.")
 
 if __name__ == "__main__":
     evaluate()

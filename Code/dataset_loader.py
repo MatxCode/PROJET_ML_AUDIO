@@ -2,10 +2,15 @@ import os
 import torch
 from torch.utils.data import Dataset, DataLoader, random_split
 
-# dictionnaire des instruments
+# Dictionnaire de correspondance entre les dossiers et les labels numériques
 INSTRUMENTS = {'gac': 0, 'org': 1, 'pia': 2, 'voi': 3} 
 
 class MusicDataset(Dataset):
+    """
+    Classe gérant le chargement des données. Elle parcourt les dossiers d'instruments,
+    référence tous les fichiers de spectrogrammes (.pt) et permet à PyTorch d'y
+    accéder via un index.
+    """
     def __init__(self, data_dir):
         self.data_dir = data_dir
         self.file_list = []
@@ -20,18 +25,26 @@ class MusicDataset(Dataset):
                         self.labels.append(label)
 
     def __len__(self):
+        """ Retourne le nombre total d'échantillons présents dans le dataset. """
         return len(self.file_list)
 
     def __getitem__(self, idx):
-        # chargement du spectrogramme
+        """ 
+        Charge en mémoire le spectrogramme correspondant à l'index donné 
+        et retourne le tuple (tenseur, étiquette). 
+        """
         spec = torch.load(self.file_list[idx])
         label = self.labels[idx]
         return spec, label
 
 def get_dataloaders(data_dir, batch_size=32):
+    """
+    Prépare les flux de données pour l'entraînement. Cette fonction divise le 
+    dataset en deux sous-ensembles (75% entraînement, 25% validation) et crée 
+    des objets DataLoader pour gérer le mélange et le groupement par lots (batches).
+    """
     full_dataset = MusicDataset(data_dir)
     
-    # 75% train 25% validation
     train_size = int(0.75 * len(full_dataset))
     val_size = len(full_dataset) - train_size
     train_dataset, val_dataset = random_split(full_dataset, [train_size, val_size])

@@ -3,7 +3,18 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 class InstrumentCNN(nn.Module):
+    """
+    Réseau de neurones convolutif (CNN) conçu pour la classification d'instruments de musique.
+    
+    L'architecture utilise trois blocs de convolutions suivis d'un pooling adaptatif.
+    Cette structure permet au modèle d'accepter des spectrogrammes de durées variables
+    tout en produisant une sortie de taille fixe pour la classification finale.
+    """
     def __init__(self, num_classes=4):
+        """
+        Définit les couches du modèle : 3 couches de convolution avec Batch Normalization,
+        une couche de pooling adaptatif, et deux couches linéaires pour la décision.
+        """
         super(InstrumentCNN, self).__init__()
         
         # convolution 1
@@ -28,6 +39,11 @@ class InstrumentCNN(nn.Module):
         self.fc2 = nn.Linear(256, num_classes)
 
     def forward(self, x):
+        """
+        Définit le flux de données à travers le réseau (Passage vers l'avant).
+        Applique successivement les convolutions, les activations ReLU, le Max Pooling,
+        puis finit par les couches de classification.
+        """
         if len(x.shape) == 3:
             x = x.unsqueeze(1)
             
