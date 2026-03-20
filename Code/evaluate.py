@@ -49,10 +49,17 @@ def evaluate():
             predicted_instrument = INV_INSTRUMENTS[predicted_idx.item()]
 
         with open(txt_path, 'r') as f:
-            true_instruments = f.read().splitlines()
+            content = f.read()
+            true_instruments = content.split() 
         
-        # 1 si instrument détecté 0 sinon
         total_instances += 1
+        
+        # debug
+        if total_instances <= 5:
+            print(f"Fichier: {wav_file}")
+            print(f"  > Prédit: {predicted_instrument}")
+            print(f"  > Présents dans le fichier: {true_instruments}")
+
         if predicted_instrument in true_instruments:
             correct_detections += 1
 
