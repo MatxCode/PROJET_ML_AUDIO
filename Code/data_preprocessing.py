@@ -5,7 +5,7 @@ import numpy as np
 from tqdm import tqdm
 
 # config
-DATASET_PATH = "../Dataset/Train_voi/voi"
+DATASET_PATH = "../Dataset/Train_gac/gac"
 OUTPUT_PATH = "../processed_data/train"
 SAMPLE_RATE = 22050
 N_MELS = 128
