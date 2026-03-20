@@ -11,6 +11,11 @@ SAMPLE_RATE = 22050
 N_MELS = 128
 
 def save_spectrograms(src_path, dest_path):
+    """
+    Parcourt récursivement les dossiers audio, convertit chaque fichier .wav en 
+    spectrogramme de Mel (représentation temps-fréquence) et sauvegarde le résultat 
+    sous forme de tenseur PyTorch (.pt) pour optimiser l'entraînement futur.
+    """
     if not os.path.exists(dest_path):
         os.makedirs(dest_path)
 

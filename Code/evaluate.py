@@ -64,14 +64,8 @@ def evaluate():
             correct_detections += 1
 
     final_score = (correct_detections / total_instances) * 100
-    print("-" * 30)
     print(f"Nombre de morceaux testés : {total_instances}")
-    print(f"Score final (Métrique Projet) : {final_score:.2f}%")
-    
-    if final_score >= 70:
-        print("Félicitations ! Objectif de 70% atteint.")
-    else:
-        print("Objectif non atteint, vérifiez l'équilibrage des données.")
+    print(f"Score final : {final_score:.2f}%")
 
 if __name__ == "__main__":
     evaluate()
