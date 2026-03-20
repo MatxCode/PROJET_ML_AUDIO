@@ -1,0 +1,15 @@
+Dataset/
+
+processed_data/
+
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+.env
+
+.DS_Store
+Thumbs.db
+.ipynb_checkpoints/
