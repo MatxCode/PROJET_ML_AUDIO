@@ -23,3 +23,4 @@ lib64/
 pyvenv.cfg
 share/
 bin/
+lib64
