@@ -29,7 +29,6 @@ def train():
     # chargement des données
     train_loader, val_loader = get_dataloaders("../processed_data/train", batch_size=BATCH_SIZE)
     
-    # 3. Initialisation du modèle sur le GPU/CPU
     model = InstrumentCNN(num_classes=4).to(DEVICE)
     
     # optimiseur & loss
