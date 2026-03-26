@@ -18,7 +18,7 @@ def predict_instrument(audio_path):
     if audio_path is None:
         return "Veuillez charger un fichier audio."
     
-    # traiement
+    # .load est par défault en mono, donc pas de mono dans l'appel de fonction 
     y, sr = librosa.load(audio_path, sr=22050)
     mel_spec = librosa.feature.melspectrogram(y=y, sr=sr, n_mels=128)
     mel_spec_db = librosa.power_to_db(mel_spec, ref=np.max)

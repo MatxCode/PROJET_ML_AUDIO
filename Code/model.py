@@ -59,6 +59,7 @@ class InstrumentCNN(nn.Module):
         Applique successivement les convolutions, les activations ReLU, le Max Pooling,
         puis finit par les couches de classification.
         """
+        #force à traiter un seul canal et non 3
         if len(x.shape) == 3:
             x = x.unsqueeze(1)
             
