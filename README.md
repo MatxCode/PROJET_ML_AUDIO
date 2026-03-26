@@ -13,13 +13,13 @@ On a ensuite utilisé un CNN classique. Le petit défi, c’était que les fichi
 Pour éviter que le modèle apprenne “par cœur”, on a ajouté du Dropout et de la normalisation (BatchNorm), et on a bien séparé nos données entre entraînement et validation.
 
 **Installation :**  
-Rien de très compliqué : il faut cloner le projet, récupérer le dataset (qui n’est pas dans le repo), puis installer les dépendances avec le fichier requirements.txt.
+Pour l'installer, il faut cloner le projet, récupérer le dataset (qui n’est pas dans le repo), puis installer les dépendances avec le fichier requirements.txt.
 
 **Comment lancer le projet :**  
 Le projet se fait en plusieurs étapes :  
 On commence par transformer les fichiers audio, puis on entraîne le modèle, ensuite on l’évalue sur le jeu de test.
 
-On a aussi fait un petit bonus sympa : une interface avec Gradio. Ça permet de tester le modèle facilement en déposant un fichier audio et en voyant directement ce qu’il détecte.
+On a aussi fait un bonus : une interface avec Gradio. Ça permet de tester le modèle facilement en déposant un fichier audio et en voyant directement ce qu’il détecte.
 
 **L’équipe :**  
 Matéo Letertre  
