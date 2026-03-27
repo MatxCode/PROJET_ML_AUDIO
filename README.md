@@ -16,6 +16,8 @@ L’objectif était assez clair : réussir à identifier correctement au moins u
 **Comment on s’y est pris :**  
 Au lieu de travailler directement sur le son brut, on a transformé les fichiers audio en spectrogrammes de Mel. Concrètement, ça revient à transformer le son en image (avec le temps et la fréquence), ce qui est beaucoup plus simple à exploiter avec un réseau de neurones.
 
+Pour la réalisation du fichier modele.py, nous nous sommes basés sur ce que nous avions fait lors du projet CIFAR10, la différence est que nous devons utiliser une seule couche de convolution par bloc comparé à deux convolutions par bloc pour CIFAR10.
+
 On a ensuite utilisé un CNN classique. Le principal problème était que les fichiers audio n'ont pas tous la même durée, donc nous avons utilisé une couche de pooling adaptatif pour que le modèle puisse quand même fonctionner avec des tailles différentes.
 
 Pour éviter que le modèle apprenne “par cœur”, on a ajouté du Dropout et de la normalisation (BatchNorm), et on a bien séparé nos données entre entraînement et validation.
@@ -26,8 +28,6 @@ Pour l'installer, il faut cloner le projet, récupérer le dataset (qui n’est 
 **Comment lancer le projet :**  
 Le projet se fait en plusieurs étapes :  
 On commence par transformer les fichiers audio, puis on entraîne le modèle, ensuite on l’évalue sur le jeu de test.
-
-On a aussi fait un bonus : une interface avec Gradio. Ça permet de tester le modèle facilement en déposant un fichier audio et en voyant directement ce qu’il détecte.
 
 **L’équipe :**  
 Matéo Letertre  
